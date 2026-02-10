@@ -47,7 +47,7 @@ const upload = multer({
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(__dirname)); // Serveer alle bestanden
+app.use(express.static(path.join(__dirname, 'docs')));
 app.use('/uploads', express.static(UPLOADS_DIR));
 
 // Helper functies
