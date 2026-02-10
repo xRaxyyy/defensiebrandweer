@@ -6,7 +6,7 @@ const cors = require('cors');
 const multer = require('multer');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000; // Gebruik environment variable voor port
 const DATA_FILE = path.join(__dirname, 'data.json');
 const UPLOADS_DIR = path.join(__dirname, 'uploads');
 
@@ -45,11 +45,16 @@ const upload = multer({
 });
 
 // Middleware
-app.use(cors());
+const corsOptions = {
+    origin: '*', // Of specifieke origins voor productie
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+};
+app.use(cors(corsOptions));
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(express.static('public'));
-app.use('/uploads', express.static(UPLOADS_DIR)); // Serve uploads statisch
+app.use('/uploads', express.static(UPLOADS_DIR));
 
 // Helper functie om data te lezen
 async function readData() {
@@ -92,7 +97,11 @@ app.post('/api/upload', upload.single('image'), async (req, res) => {
             });
         }
         
-        const imageUrl = `/uploads/${req.file.filename}`;
+        // Maak URL dynamisch gebaseerd op request host
+        const protocol = req.protocol;
+        const host = req.get('host');
+        const imageUrl = `${protocol}://${host}/uploads/${req.file.filename}`;
+        
         console.log('Afbeelding succesvol geüpload:', {
             filename: req.file.filename,
             originalname: req.file.originalname,
@@ -189,14 +198,14 @@ app.get('/api/cleanup', async (req, res) => {
         const usedImages = new Set();
         
         data.locations.forEach(loc => {
-            if (loc.imageUrl && loc.imageUrl.startsWith('/uploads/')) {
+            if (loc.imageUrl && loc.imageUrl.includes('/uploads/')) {
                 const filename = path.basename(loc.imageUrl);
                 usedImages.add(filename);
             }
         });
         
         data.equipment.forEach(eq => {
-            if (eq.imageUrl && eq.imageUrl.startsWith('/uploads/')) {
+            if (eq.imageUrl && eq.imageUrl.includes('/uploads/')) {
                 const filename = path.basename(eq.imageUrl);
                 usedImages.add(filename);
             }
@@ -391,8 +400,10 @@ app.get('/api/health', (req, res) => {
             '/api/locations',
             '/api/equipment',
             '/api/upload',
-            '/api/health'
-        ]
+            '/api/health',
+            '/api/info'
+        ],
+        environment: process.env.NODE_ENV || 'development'
     });
 });
 
@@ -401,12 +412,16 @@ app.get('/api/info', async (req, res) => {
     try {
         const data = await readData();
         const files = await fs.readdir(UPLOADS_DIR);
+        const protocol = req.protocol;
+        const host = req.get('host');
         
         res.json({
             server: {
                 uptime: process.uptime(),
                 nodeVersion: process.version,
-                platform: process.platform
+                platform: process.platform,
+                environment: process.env.NODE_ENV || 'development',
+                port: PORT
             },
             data: {
                 locations: data.locations.length,
@@ -419,8 +434,9 @@ app.get('/api/info', async (req, res) => {
                 totalSize: await calculateDirectorySize(UPLOADS_DIR)
             },
             paths: {
-                uploadsUrl: 'http://localhost:3000/uploads/',
-                apiBase: 'http://localhost:3000/api/'
+                uploadsUrl: `${protocol}://${host}/uploads/`,
+                apiBase: `${protocol}://${host}/api/`,
+                serverUrl: `${protocol}://${host}`
             }
         });
     } catch (error) {
@@ -468,31 +484,62 @@ app.use('/api/*', (req, res) => {
     });
 });
 
+// Serveer index.html voor root path
+app.get('/', (req, res) => {
+    const indexPath = path.join(__dirname, 'public', 'index.html');
+    if (fsSync.existsSync(indexPath)) {
+        res.sendFile(indexPath);
+    } else {
+        res.send(`
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Defensiebrandweer NL API Server</title>
+                <style>
+                    body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
+                    h1 { color: #333; }
+                    .endpoint { background: #f4f4f4; padding: 10px; margin: 5px 0; border-left: 4px solid #007bff; }
+                </style>
+            </head>
+            <body>
+                <h1>🚀 DEFENSIEBRANDWEER NL API SERVER</h1>
+                <p>Server is actief op poort: ${PORT}</p>
+                <h2>Beschikbare endpoints:</h2>
+                <div class="endpoint">GET <a href="/api/health">/api/health</a> - Server status</div>
+                <div class="endpoint">GET <a href="/api/info">/api/info</a> - Server informatie</div>
+                <div class="endpoint">GET <a href="/api/locations">/api/locations</a> - Alle locaties</div>
+                <div class="endpoint">GET <a href="/api/equipment">/api/equipment</a> - Alle materieel</div>
+                <p>Gebruik POST /api/upload voor het uploaden van afbeeldingen</p>
+            </body>
+            </html>
+        `);
+    }
+});
+
 // Start server
 app.listen(PORT, () => {
+    const serverUrl = `http://localhost:${PORT}`;
     console.log(`
 ╔══════════════════════════════════════════════════════╗
 ║        🚀 DEFENSIEBRANDWEER NL API SERVER           ║
 ╚══════════════════════════════════════════════════════╝
 `);
-    console.log(`📡 Server URL:  http://localhost:${PORT}`);
+    console.log(`🌐 Server URL:  ${serverUrl}`);
+    console.log(`⚡ Environment: ${process.env.NODE_ENV || 'development'}`);
     console.log(`📁 Data file:   ${DATA_FILE}`);
     console.log(`📸 Uploads dir: ${UPLOADS_DIR}`);
-    console.log(`⚡ CORS:        Enabled for all origins`);
-    console.log(`📊 Endpoints:`);
-    console.log(`   • GET  /api/health          - Server status`);
-    console.log(`   • GET  /api/info            - Server informatie`);
-    console.log(`   • GET  /api/locations       - Alle locaties`);
-    console.log(`   • GET  /api/equipment       - Alle materieel`);
-    console.log(`   • POST /api/upload          - Upload afbeelding`);
-    console.log(`   • POST /api/{type}          - Nieuw item`);
-    console.log(`   • PUT  /api/{type}/{id}     - Update item`);
-    console.log(`   • DEL  /api/{type}/{id}     - Verwijder item`);
+    console.log(`🔧 CORS:        Enabled`);
+    console.log(`📊 Belangrijke endpoints:`);
+    console.log(`   • GET  ${serverUrl}/api/health     - Server status`);
+    console.log(`   • GET  ${serverUrl}/api/info       - Server info`);
+    console.log(`   • GET  ${serverUrl}/api/locations  - Locaties`);
+    console.log(`   • GET  ${serverUrl}/api/equipment  - Materieel`);
+    console.log(`   • POST ${serverUrl}/api/upload     - Upload afbeelding`);
     console.log(`
-💡 Tips:
-   • Upload afbeeldingen via POST /api/upload
-   • Bekijk server info via http://localhost:${PORT}/api/info
-   • Cleanup oude afbeeldingen via /api/cleanup
+💡 Tips voor GitHub deployment:
+   • Voeg .gitignore toe met: node_modules/, uploads/, data.json
+   • Maak package.json klaar voor productie
+   • Zorg voor CORS configuratie
 `);
     console.log(`──────────────────────────────────────────────`);
 });
