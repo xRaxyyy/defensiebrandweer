@@ -1,7 +1,0 @@
-{
-  "name": "Defensiebrandweer NL - Modern",
-  "description": "A modernized platform for the Dutch Defense Fire Department, featuring location management, equipment tracking, and an interactive dashboard.",
-  "requestFramePermissions": [
-    "geolocation"
-  ]
-}
