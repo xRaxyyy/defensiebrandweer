@@ -608,7 +608,7 @@
     async function fetchLocations() {
         try {
             console.log('Bezig met ophalen van locaties...');
-            const response = await fetch('http://localhost:3000/api/locations');
+            const response = await fetch('/api/locations');
             
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -693,7 +693,7 @@
                 
                 // Als het een lokale upload is, zorg voor correcte URL
                 if (imageUrl.includes('/uploads/') && !imageUrl.startsWith('http')) {
-                    imageUrl = `http://localhost:3000${imageUrl}`;
+                    imageUrl = `${imageUrl}`;
                 }
                 
                 card.innerHTML = `
@@ -723,7 +723,7 @@
                     <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #dc2626;">
                         <p style="margin-bottom: 10px;">⚠️ Kan locaties niet laden</p>
                         <p style="font-size: 14px; color: #6b7280;">
-                            Controleer of de API server draait op http://localhost:3000
+                            Controleer of de API server draait op 
                         </p>
                     </div>
                 `;

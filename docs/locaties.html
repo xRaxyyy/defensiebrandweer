@@ -917,7 +917,7 @@
     async function fetchLocations() {
         try {
             console.log('Fetching locations from API...');
-            const response = await fetch('http://localhost:3000/api/locations');
+            const response = await fetch('/api/locations');
             
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
