@@ -19,10 +19,6 @@
     <script src="js/modal.js"></script>
     <style>
         .cats { align-items:center; gap:6px; padding-bottom:18px; border-bottom:1px solid var(--border); margin-bottom:8px; flex-wrap:wrap; }
-        .cats button { min-height:44px; padding:9px 16px; border:1px solid var(--border); border-radius:4px; background:var(--surface); color:var(--text-soft); font:600 15px 'Barlow',sans-serif; cursor:pointer; transition:background-color 150ms,color 150ms,border-color 150ms; }
-        .cats button:hover { background:var(--olive); color:#FFD078; border-color:var(--gold); }
-        .cats button.active { background:var(--blue); color:#fff; border-color:var(--blue); }
-        .cats button:focus-visible { outline:2px solid var(--gold); outline-offset:3px; }
         .count { color:var(--text-muted); font-size:14px; letter-spacing:0; }
         .grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; margin-top:24px; }
         .ph { display:block; width:100%; padding:0; aspect-ratio:4/3; overflow:hidden; cursor:zoom-in; appearance:none; text-align:left; background:var(--surface); border:1px solid var(--border); border-radius:5px; position:relative; isolation:isolate; }
@@ -46,6 +42,12 @@
         @media(max-width:640px) { .cats button { flex:1 1 auto; } .count { margin:4px 0 0; } .grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; } }
         @media(max-width:380px) { .grid { grid-template-columns:1fr; } }
     </style>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <meta property="og:image" content="https://defensiebrandweer.nl/assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
 </head>
 <body class="photo-gallery-page">
 <div id="navbar-placeholder"></div>

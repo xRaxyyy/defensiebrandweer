@@ -28,18 +28,7 @@
         .stat-value-skeleton { display:inline-block; width:48px; height:40px; border-radius:3px; background:var(--olive); color:transparent; position:relative; overflow:hidden; vertical-align:middle; }
         .stat-value-skeleton::after { content:""; position:absolute; inset:0; transform:translateX(-100%); background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent); animation:dash-shimmer 1.4s infinite; }
         .tabs { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:18px; padding-bottom:18px; border-bottom:1px solid var(--border); }
-        .tab-btn { min-height:40px; padding:8px 16px; border:1px solid var(--border); border-radius:4px; background:var(--surface); color:var(--text-soft); font:600 14px 'Barlow',sans-serif; cursor:pointer; transition:background-color 150ms,color 150ms,border-color 150ms; }
-        .tab-btn:hover { background:var(--olive); color:#FFD078; border-color:var(--gold); }
-        .tab-btn.active { background:var(--blue); color:#fff; border-color:var(--blue); }
         .toolbar { display:flex; align-items:center; gap:14px; margin-bottom:18px; flex-wrap:wrap; }
-        .search { display:flex; align-items:center; gap:10px; width:280px; min-height:44px; padding:8px 12px; border:1px solid var(--border); border-radius:4px; background:var(--surface); transition:border-color 150ms,box-shadow 150ms; }
-        .search i { color:var(--gold); }
-        .search input { border:none; outline:none; width:100%; background:transparent; color:var(--text); font:400 16px 'Barlow',sans-serif; }
-        .search input::placeholder { color:var(--text-muted); }
-        .search:focus-within { border-color:var(--gold); box-shadow:0 0 0 3px rgba(240,174,74,.18); }
-        .search input:focus { outline:none; box-shadow:none; }
-        .add-btn { min-height:44px; padding:9px 16px; background:var(--gold); color:#000; border:1px solid var(--gold); border-radius:4px; font:600 15px 'Barlow',sans-serif; cursor:pointer; display:inline-flex; align-items:center; gap:8px; transition:background-color 150ms; }
-        .add-btn:hover { background:#FFD078; border-color:#FFD078; }
         .table-container { background:var(--surface); border:1px solid var(--border); border-radius:6px; overflow-x:auto; margin-top:18px; }
         .table { width:100%; border-collapse:collapse; min-width:760px; table-layout:fixed; }
         .table thead th { padding:12px 16px; color:var(--text-muted); background:var(--bg-dark); border-bottom:1px solid var(--border); font:700 13px 'Barlow Condensed',sans-serif; letter-spacing:.1em; text-transform:uppercase; text-align:left; white-space:nowrap; }
@@ -70,29 +59,16 @@
         .skeleton-line::after { content:""; position:absolute; inset:0; transform:translateX(-100%); background-image:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent); animation:dash-shimmer 1.4s infinite; }
         @keyframes dash-shimmer { to { transform:translateX(100%); } }
         .stat-value { transition:opacity 200ms; }
-        .modal-overlay { position:fixed; inset:0; background:rgba(8,10,7,.9); backdrop-filter:blur(12px); opacity:0; visibility:hidden; pointer-events:none; transition:opacity 230ms ease,visibility 0s linear 230ms; z-index:2000; display:flex; align-items:center; justify-content:center; padding:20px; }
-        .modal-overlay.open { opacity:1; visibility:visible; pointer-events:auto; transition-delay:0s; }
-        .modal-content { background:var(--surface); border:1px solid var(--border); border-radius:6px; max-width:900px; width:100%; max-height:90vh; overflow:hidden; display:flex; flex-direction:column; }
-        .modal-header { display:flex; align-items:center; justify-content:space-between; padding:18px 22px; border-bottom:1px solid var(--border); }
-        .modal-title { color:var(--text); font:700 22px 'Barlow Condensed',sans-serif; text-transform:uppercase; margin:0; }
-        .modal-close { width:40px; height:40px; border-radius:4px; background:var(--surface); border:1px solid var(--border); color:var(--text-soft); cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background-color 150ms,color 150ms,border-color 150ms; }
-        .modal-close:hover { background:var(--gold); color:#000; border-color:var(--gold); }
-        .modal-close i { font-size:14px; line-height:1; margin:0; }
-        .modal-body { padding:22px; overflow-y:auto; flex:1; }
-        .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-        .form-group { display:flex; flex-direction:column; gap:6px; }
-        .form-full { grid-column:1 / -1; }
-        .form-label { color:var(--text-soft); font:600 14px 'Barlow',sans-serif; }
-        .form-input, .form-select { min-height:44px; padding:10px 13px; color:var(--text); background:var(--bg-dark); border:1px solid var(--border); border-radius:4px; font:400 15px 'Barlow',sans-serif; transition:border-color 150ms; }
-        .form-input:focus, .form-select:focus { outline:none; border-color:var(--gold); }
-        .form-actions { display:flex; gap:10px; justify-content:flex-end; margin-top:20px; padding-top:18px; border-top:1px solid var(--border); }
-        .save-button { min-height:44px; padding:10px 20px; background:var(--gold); color:#000; border:1px solid var(--gold); border-radius:4px; font:600 15px 'Barlow',sans-serif; cursor:pointer; transition:background-color 150ms; }
-        .save-button:hover { background:#FFD078; border-color:#FFD078; }
-        .cancel-button { min-height:44px; padding:10px 20px; background:var(--surface); color:var(--text-soft); border:1px solid var(--border); border-radius:4px; font:600 15px 'Barlow',sans-serif; cursor:pointer; transition:background-color 150ms,color 150ms; }
-        .cancel-button:hover { background:var(--olive); color:#FFD078; border-color:var(--gold); }
+        /* modal + formulier styling via js/modal.js (DefensieFormModal) */
         @media(max-width:900px) { .stats-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .form-grid { grid-template-columns:1fr; } .modal-content { max-width:100%; } }
         @media(max-width:640px) { .dashboard-page { padding:112px 20px 60px; } .stats-grid { grid-template-columns:1fr; } .toolbar { align-items:stretch; } .search { width:100%; } .add-btn { width:100%; } }
     </style>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <meta property="og:image" content="https://defensiebrandweer.nl/assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
 <div id="navbar-placeholder"></div>
@@ -130,15 +106,7 @@
 <div id="footer-placeholder"></div>
 </div><div class="custom-scrollbar-body"><div class="scrollbar-thumb"></div></div></div>
 
-<div class="modal-overlay" id="modalOverlay" style="display:none;">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2 class="modal-title" id="modalTitle">Item</h2>
-            <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
-        </div>
-        <div class="modal-body" id="modalBody"></div>
-    </div>
-</div>
+
 
 <script>
     const API_BASE_URL = '/api';
@@ -152,10 +120,6 @@
     const tableContainer = document.getElementById('tableContainer');
     const searchInput = document.getElementById('searchInput');
     const addBtn = document.getElementById('addBtn');
-    const modalOverlay = document.getElementById('modalOverlay');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalBody = document.getElementById('modalBody');
-    const modalClose = document.getElementById('modalClose');
 
     function esc(s) { return (s || '').replace(/[&<>"]/g, m => m === '&' ? '&amp;' : m === '<' ? '&lt;' : m === '>' ? '&gt;' : '&quot;'); }
 
@@ -229,15 +193,18 @@
     }
 
     function openModal(title, bodyHtml) {
-        modalTitle.textContent = title;
-        modalBody.innerHTML = bodyHtml;
-        modalOverlay.style.display = 'flex';
-        requestAnimationFrame(() => modalOverlay.classList.add('open'));
+        if (window.DefensieFormModal) window.DefensieFormModal.open(title, bodyHtml);
     }
-
     function closeModal() {
-        modalOverlay.classList.remove('open');
-        setTimeout(() => { modalOverlay.style.display = 'none'; }, 230);
+        if (window.DefensieFormModal) window.DefensieFormModal.close();
+    }
+    function dropdown(id, value, options) {
+        const cur = value || options[0] || '';
+        return `<div class="custom-select"><button type="button" class="custom-select-trigger" aria-expanded="false"><span>${esc(cur)}</span></button><div class="custom-select-menu">${options.map(o => `<button type="button" class="custom-select-option ${o === cur ? 'active' : ''}" data-value="${esc(o)}">${esc(o)}</button>`).join('')}</div><input type="hidden" id="${id}" value="${esc(cur)}"></div>`;
+    }
+    function uploadField(item) {
+        const src = esc(item?.imageUrl || '');
+        return `<div class="upload-drop" data-drop><div class="upload-thumb">${src ? `<img class="upload-preview" src="${src}" alt="Voorbeeld">` : `<i class="fi fi-rr-picture upload-empty-icon"></i><img class="upload-preview" alt="" style="display:none;">`}</div><div class="upload-meta"><div class="upload-name">${src ? 'Huidige afbeelding' : 'Geen afbeelding'}</div><div class="upload-actions"><label class="upload-btn primary" for="f_imageFile"><i class="fas fa-upload"></i>Kies afbeelding</label>${src ? `<button type="button" class="upload-btn" data-preview><i class="fi fi-rr-eye"></i>Bekijken</button><button type="button" class="upload-btn danger" data-clear><i class="fas fa-trash"></i>Verwijderen</button>` : ''}</div><input type="file" id="f_imageFile" accept="image/png,image/jpeg,image/webp" hidden><input type="hidden" id="f_image" value="${src}"></div></div>`;
     }
 
     function editItem(id, type) {
@@ -249,11 +216,12 @@
         isEditing = !!item;
         editingItem = item;
         const name = type === 'locations' ? 'Locatie' : type === 'vehicles' ? 'Voertuig' : type === 'equipment' ? 'Materieel' : 'Kenteken';
-        modalTitle.textContent = isEditing ? `${name} bewerken` : `Nieuw ${name}`;
+        const title = isEditing ? `${name} bewerken` : `Nieuw ${name}`;
 
         let fields = '';
         if (type === 'locations') {
             fields = `
+                <div class="form-full"><div class="form-section">Basis</div></div>
                 <div class="form-group"><label class="form-label">Naam *</label><input class="form-input" id="f_name" value="${esc(item?.name || '')}" required></div>
                 <div class="form-group"><label class="form-label">Type</label><input class="form-input" id="f_type" value="${esc(item?.type || '')}"></div>
                 <div class="form-group"><label class="form-label">Stad</label><input class="form-input" id="f_city" value="${esc(item?.city || '')}"></div>
@@ -261,39 +229,49 @@
                 <div class="form-group"><label class="form-label">Van (jaar)</label><input class="form-input" id="f_yearFrom" value="${esc(item?.yearFrom || '')}"></div>
                 <div class="form-group"><label class="form-label">Tot (jaar)</label><input class="form-input" id="f_yearTo" value="${esc(item?.yearTo || '')}"></div>
                 <div class="form-full"><div class="form-group"><label class="form-label">Beschrijving</label><textarea class="form-input" id="f_desc" rows="3">${esc(item?.description || '')}</textarea></div></div>
-                <div class="form-full"><div class="form-group"><label class="form-label">Afbeelding</label><input type="file" id="f_imageFile" accept="image/*" class="form-input"><input type="hidden" id="f_image" value="${esc(item?.imageUrl || '')}">${item?.imageUrl ? `<img src="${esc(item.imageUrl)}" style="max-width:200px;margin-top:8px;border-radius:4px;">` : ''}</div></div>`;
+                <div class="form-full"><div class="form-section">Afbeelding</div><div class="form-group">${uploadField(item)}</div></div>`;
         } else if (type === 'vehicles') {
             fields = `
+                <div class="form-full"><div class="form-section">Voertuig</div></div>
                 <div class="form-group"><label class="form-label">Naam</label><input class="form-input" id="f_naam" value="${esc(item?.naam || '')}"></div>
                 <div class="form-group"><label class="form-label">Merk</label><input class="form-input" id="f_merk" value="${esc(item?.merk || '')}"></div>
                 <div class="form-group"><label class="form-label">Type</label><input class="form-input" id="f_type" value="${esc(item?.type || '')}"></div>
-                <div class="form-group"><label class="form-label">Status</label><select class="form-select" id="f_status"><option ${item?.status === 'Actief' ? 'selected' : ''}>Actief</option><option ${item?.status === 'Historisch' ? 'selected' : ''}>Historisch</option></select></div>
+                <div class="form-group"><label class="form-label">Status</label>${dropdown('f_status', item?.status || 'Actief', ['Actief', 'Historisch'])}</div>
                 <div class="form-group"><label class="form-label">Bouwjaar</label><input class="form-input" id="f_bouwjaar" value="${esc(item?.bouwjaar || '')}"></div>
                 <div class="form-group"><label class="form-label">Van (jaar)</label><input class="form-input" id="f_yearFrom" value="${esc(item?.yearFrom || '')}"></div>
                 <div class="form-group"><label class="form-label">Tot (jaar)</label><input class="form-input" id="f_yearTo" value="${esc(item?.yearTo || '')}"></div>
-                <div class="form-full"><div class="form-group"><label class="form-label">Afbeelding</label><input type="file" id="f_imageFile" accept="image/*" class="form-input"><input type="hidden" id="f_image" value="${esc(item?.imageUrl || '')}">${item?.imageUrl ? `<img src="${esc(item.imageUrl)}" style="max-width:200px;margin-top:8px;border-radius:4px;">` : ''}</div></div>`;
+                <div class="form-full"><div class="form-section">Afbeelding</div><div class="form-group">${uploadField(item)}</div></div>`;
         } else if (type === 'equipment') {
             fields = `
+                <div class="form-full"><div class="form-section">Materieel</div></div>
                 <div class="form-group"><label class="form-label">Naam</label><input class="form-input" id="f_name" value="${esc(item?.name || '')}"></div>
                 <div class="form-group"><label class="form-label">Categorie</label><input class="form-input" id="f_category" value="${esc(item?.category || '')}"></div>
                 <div class="form-full"><div class="form-group"><label class="form-label">Beschrijving</label><textarea class="form-input" id="f_desc" rows="3">${esc(item?.description || '')}</textarea></div></div>
                 <div class="form-group"><label class="form-label">Jaar</label><input class="form-input" id="f_year" value="${esc(item?.year || '')}"></div>
-                <div class="form-full"><div class="form-group"><label class="form-label">Afbeelding</label><input type="file" id="f_imageFile" accept="image/*" class="form-input"><input type="hidden" id="f_image" value="${esc(item?.imageUrl || '')}">${item?.imageUrl ? `<img src="${esc(item.imageUrl)}" style="max-width:200px;margin-top:8px;border-radius:4px;">` : ''}</div></div>`;
+                <div class="form-full"><div class="form-section">Afbeelding</div><div class="form-group">${uploadField(item)}</div></div>`;
         } else if (type === 'licenseplates') {
             fields = `
+                <div class="form-full"><div class="form-section">Kenteken</div></div>
                 <div class="form-group"><label class="form-label">Kenteken *</label><input class="form-input" id="f_kenteken" value="${esc(item?.kenteken || '')}" required></div>
+                <div class="form-group"><label class="form-label">Status</label>${dropdown('f_status', item?.status || 'Actief', ['Actief', 'Historisch'])}</div>
+                <div class="form-full"><div class="form-section">Voertuig</div></div>
                 <div class="form-group"><label class="form-label">Naam</label><input class="form-input" id="f_naam" value="${esc(item?.naam || '')}"></div>
                 <div class="form-group"><label class="form-label">Merk</label><input class="form-input" id="f_merk" value="${esc(item?.merk || '')}"></div>
                 <div class="form-group"><label class="form-label">Type</label><input class="form-input" id="f_type" value="${esc(item?.type || '')}"></div>
-                <div class="form-group"><label class="form-label">Status</label><select class="form-select" id="f_status"><option ${item?.status === 'Actief' ? 'selected' : ''}>Actief</option><option ${item?.status === 'Historisch' ? 'selected' : ''}>Historisch</option></select></div>
                 <div class="form-group"><label class="form-label">Bouwjaar</label><input class="form-input" id="f_bouwjaar" value="${esc(item?.bouwjaar || '')}"></div>
+                <div class="form-full"><div class="form-section">Historie</div></div>
                 <div class="form-group"><label class="form-label">Locatie</label><input class="form-input" id="f_locatie" value="${esc(item?.locatie || '')}"></div>
+                <div class="form-group"><label class="form-label">Eenheid</label><input class="form-input" id="f_eenheid" value="${esc(item?.eenheid || '')}"></div>
                 <div class="form-group"><label class="form-label">Roepnr.</label><input class="form-input" id="f_roepnr" value="${esc(item?.roepnr || '')}"></div>
-                <div class="form-full"><div class="form-group"><label class="form-label">Afbeelding</label><input type="file" id="f_imageFile" accept="image/*" class="form-input"><input type="hidden" id="f_image" value="${esc(item?.imageUrl || '')}">${item?.imageUrl ? `<img src="${esc(item.imageUrl)}" style="max-width:200px;margin-top:8px;border-radius:4px;">` : ''}</div></div>`;
+                <div class="form-group"><label class="form-label">Jaar in</label><input class="form-input" id="f_jaarIn" value="${esc(item?.jaarIn || '')}"></div>
+                <div class="form-group"><label class="form-label">Jaar uit</label><input class="form-input" id="f_jaarUit" value="${esc(item?.jaarUit || '')}"></div>
+                <div class="form-group"><label class="form-label">Van</label><input class="form-input" id="f_van" value="${esc(item?.van || '')}"></div>
+                <div class="form-group"><label class="form-label">Naar</label><input class="form-input" id="f_naar" value="${esc(item?.naar || '')}"></div>
+                <div class="form-full"><div class="form-group"><label class="form-label">Bijz.</label><textarea class="form-input" id="f_bijz" rows="2">${esc(item?.bijz || '')}</textarea></div></div>
+                <div class="form-full"><div class="form-section">Afbeelding</div><div class="form-group">${uploadField(item)}</div></div>`;
         }
 
-        modalBody.innerHTML = `<div class="form-grid">${fields}</div><div class="form-actions"><button class="save-button" onclick="saveItem('${type}','${id || ''}')">Opslaan</button><button type="button" class="cancel-button" onclick="closeModal()">Annuleren</button></div>`;
-        openModal(modalTitle.textContent, modalBody.innerHTML);
+        openModal(title, `<div class="form-grid">${fields}</div><div class="form-actions"><button class="save-button" onclick="saveItem('${type}','${id || ''}')">Opslaan</button><button type="button" class="cancel-button" onclick="closeModal()">Annuleren</button></div>`);
     }
 
     async function saveItem(type, id) {
@@ -317,7 +295,7 @@
         } else if (type === 'equipment') {
             data = { name: document.getElementById('f_name')?.value, category: document.getElementById('f_category')?.value, description: document.getElementById('f_desc')?.value, year: document.getElementById('f_year')?.value, imageUrl: imageUrl };
         } else if (type === 'licenseplates') {
-            data = { kenteken: document.getElementById('f_kenteken')?.value?.toUpperCase(), naam: document.getElementById('f_naam')?.value, merk: document.getElementById('f_merk')?.value, type: document.getElementById('f_type')?.value, status: document.getElementById('f_status')?.value, bouwjaar: document.getElementById('f_bouwjaar')?.value, locatie: document.getElementById('f_locatie')?.value, roepnr: document.getElementById('f_roepnr')?.value, imageUrl: imageUrl };
+            data = { kenteken: document.getElementById('f_kenteken')?.value?.toUpperCase(), naam: document.getElementById('f_naam')?.value, merk: document.getElementById('f_merk')?.value, type: document.getElementById('f_type')?.value, status: document.getElementById('f_status')?.value, bouwjaar: document.getElementById('f_bouwjaar')?.value, locatie: document.getElementById('f_locatie')?.value, eenheid: document.getElementById('f_eenheid')?.value, roepnr: document.getElementById('f_roepnr')?.value, jaarIn: document.getElementById('f_jaarIn')?.value, jaarUit: document.getElementById('f_jaarUit')?.value, van: document.getElementById('f_van')?.value, naar: document.getElementById('f_naar')?.value, bijz: document.getElementById('f_bijz')?.value, imageUrl: imageUrl };
         }
         if (type === 'locations' && !data.name) { alert('Naam is verplicht'); return; }
         if (type === 'licenseplates' && !data.kenteken) { alert('Kenteken is verplicht'); return; }
@@ -354,8 +332,6 @@
 
     searchInput.addEventListener('input', () => renderTable());
     addBtn.addEventListener('click', () => editItem(null, activeTab === 'locations' ? 'locations' : activeTab === 'vehicles' ? 'vehicles' : activeTab === 'equipment' ? 'equipment' : 'licenseplates'));
-    modalClose.addEventListener('click', closeModal);
-    modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
 
     (async () => {
         const elapsed = performance.now() - loadingStartedAt;

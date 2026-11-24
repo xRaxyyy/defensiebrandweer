@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600;700&display=block" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Over ons - DEFENSIEBRANDWEER NL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@400;700&display=block" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="js/navbar.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/loader.js"></script>
+    <script src="js/scrollbar.js"></script>
+    <style>
+        .hero-intro { margin-bottom:28px; }
+        .intro-side { display:none; }
+        .intro-card { padding:32px; background:var(--surface); border:1px solid var(--border); border-radius:8px; }
+        .intro-card h2 { margin:0 0 12px; color:var(--text); font:700 28px 'Barlow Condensed',sans-serif; letter-spacing:.02em; text-transform:uppercase; }
+        .intro-card p { color:var(--text-soft); font:400 16px/1.7 'Barlow',sans-serif; margin:0 0 12px; }
+        .intro-card p:last-child { margin-bottom:0; }
+        .intro-card strong { color:var(--text); }
+        .intro-side { display:flex; flex-direction:column; gap:16px; }
+        .stat-box { flex:1; padding:24px; background:var(--surface); border:1px solid var(--border); border-radius:8px; display:flex; flex-direction:column; justify-content:center; }
+        .stat-box .num { color:var(--gold); font:700 40px 'Barlow Condensed',sans-serif; line-height:1; }
+        .stat-box .lbl { color:var(--text-muted); font:500 13px 'Barlow',sans-serif; margin-top:6px; text-transform:uppercase; letter-spacing:.08em; }
+        .section { margin-bottom:28px; }
+        .section-title { display:flex; align-items:center; gap:10px; margin:0 0 14px; color:var(--text); font:700 24px 'Barlow Condensed',sans-serif; letter-spacing:.02em; text-transform:uppercase; }
+        .section-title i { color:var(--gold); display:inline-flex; align-items:center; justify-content:center; line-height:1; height:auto; }
+        .section p { color:var(--text-soft); font:400 16px/1.7 'Barlow',sans-serif; margin:0 0 14px; }
+        .section p:last-child { margin-bottom:0; }
+        .people { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+        .person { padding:28px; background:var(--surface); border:1px solid var(--border); border-radius:8px; position:relative; overflow:hidden; }
+
+        .person-avatar { width:64px; height:64px; border-radius:50%; background:var(--olive); border:2px solid var(--gold); display:flex; align-items:center; justify-content:center; color:var(--gold); font:700 24px 'Barlow Condensed',sans-serif; margin-bottom:16px; }
+        .person h3 { margin:0 0 4px; color:var(--text); font:700 22px 'Barlow Condensed',sans-serif; letter-spacing:.02em; text-transform:uppercase; }
+        .person .role { color:var(--gold); font:600 13px 'Barlow',sans-serif; text-transform:uppercase; letter-spacing:.08em; margin-bottom:12px; }
+        .person p { color:var(--text-soft); font:400 15px/1.65 'Barlow',sans-serif; margin:0; }
+        .timeline { display:grid; gap:14px; }
+        .timeline-item { display:grid; grid-template-columns:44px 1fr; gap:14px; align-items:center; padding:18px 20px; background:var(--surface); border:1px solid var(--border); border-radius:8px; }
+        .timeline-icon { width:44px; height:44px; border-radius:6px; background:var(--olive); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; color:var(--gold); font-size:18px; }
+        .timeline-icon i { display:inline-flex; align-items:center; justify-content:center; line-height:1; height:auto; }
+        .timeline-item h4 { margin:0 0 4px; color:var(--text); font:700 17px 'Barlow Condensed',sans-serif; letter-spacing:.02em; text-transform:uppercase; }
+        .timeline-item p { margin:0; color:var(--text-soft); font:400 15px/1.6 'Barlow',sans-serif; }
+        .cta-row { display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:8px; }
+        .cta-btn { display:inline-flex; align-items:center; gap:8px; min-height:46px; padding:11px 18px; color:#fff; background:var(--red); border:1px solid var(--red); border-radius:4px; font:600 15px 'Barlow',sans-serif; text-decoration:none; transition:filter 150ms; }
+        .cta-btn:hover { filter:brightness(1.12); }
+        .cta-btn.secondary { color:var(--text); background:var(--surface); border-color:var(--border); }
+        .cta-btn.secondary:hover { border-color:var(--gold); color:#FFD078; }
+        .meta { margin-top:24px; padding-top:16px; border-top:1px solid var(--border); color:var(--text-muted); font:400 13px 'Barlow',sans-serif; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+        @media(max-width:900px) { .hero-intro { grid-template-columns:1fr; } .people { grid-template-columns:1fr; } }
+        @media(max-width:640px) { .page { padding:112px 20px 60px; } .page h1 { font-size:46px; } .sub { font-size:17px; margin-bottom:28px; } .intro-card,.person,.timeline-item { padding:20px 18px; } }
+    </style>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <meta property="og:image" content="https://defensiebrandweer.nl/assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+</head>
+<body class="over-ons-page">
+<div id="navbar-placeholder"></div>
+<div class="scroll-container"><div class="scroll-content">
+<div class="page">
+    <div class="kicker">Defensiebrandweer NL</div>
+    <h1>Wie zijn <span>wij</span></h1>
+    <p class="sub">Over het initiatief achter Defensiebrandweer NL.</p>
+
+    <div class="hero-intro">
+        <div class="intro-card">
+            <h2>Ons initiatief</h2>
+            <p><strong>Defensiebrandweer NL</strong> is een initiatief van <strong>Fred Bumann</strong>, gepensioneerd Officier Brandweer van de Koninklijke Luchtmacht, en <strong>Paul Maissan</strong>, enthousiaste liefhebber en fotograaf van brandweervoertuigen en -kazernes.</p>
+            <p>Deze website is geboren omdat alle vier de krijgsmachtdelen veel aan brandveiligheid doen, maar er geen centraal punt was waar dit duidelijk werd geuit. Hopelijk lukt het op deze manier om een positieve kijk te gunnen op het nuttige werk van de (oud-)Defensie Brandweercollega's.</p>
+        </div>
+
+    </div>
+
+    <div class="section">
+        <h2 class="section-title"><i class="fi fi-rr-users"></i> De initiatiefnemers</h2>
+        <div class="people">
+            <div class="person">
+                <div class="person-avatar">FB</div>
+                <h3>Fred Bumann</h3>
+                <div class="role">Gepensioneerd Officier Brandweer KLu</div>
+                <p>In zijn loopbaan als militair brandweerman had Fred diverse plaatsingen in Nederland en Duitsland. Naast zijn normale diensten gaf hij vaak les, lezingen en rondleidingen. Hij organiseerde multidisciplinaire brandweeroefeningen binnen en buiten de krijgsmacht en was betrokken bij rampen- en rampbestrijdingsplannen. Na zijn militaire carrière werkte hij ca. 6 jaar als brandpreventie expert door heel Nederland.</p>
+            </div>
+            <div class="person">
+                <div class="person-avatar">PM</div>
+                <h3>Paul Maissan</h3>
+                <div class="role">Fotograaf &amp; historicus</div>
+                <p>Al jaren niet-commercieel bezig met het fotograferen van brandweervoertuigen in binnen- en buitenland. De afgelopen jaren verdiepte hij zich in de historie van de Defensiebrandweer: voertuigen, locaties en bijbehorende informatie. Hij stelde veel van zijn verzamelde gegevens ter beschikking en helpt met de vulling en instandhouding van deze website.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title"><i class="fi fi-rr-time-past"></i> Het verhaal</h2>
+        <p>Al die jaren was er een spanningsveld tussen de militaire status en de brandweerfunctie. Elke drie jaar, bij het wisselen van militair commandant, moest uitgelegd worden wat ‘die brandweer dan toch wel deed’. Terwijl, als je die commandant vroeg of hij wist wat de brandweer in zijn stad of dorp deed, het antwoord meteen gegeven kon worden.</p>
+        <p>De samenwerking van militaire en civiele brandweerkorpsen was vele jaren een ondergeschoven onderwerp van gesprek. Door inspanning van een aantal geachte collega’s is het uiteindelijk gelukt om een aantal militaire brandweerlieden op te leiden volgens de civiele normen, o.a. OKBO en Preventie cursussen. En, helaas door een aantal betreurenswaardige ongevallen, is de samenwerking heden ten dage ook sterk verbeterd en zijn afspraken gelukkig ook op schrift gesteld. Dit was maar een deel van het verhaal. Hengelo, 8-6-2020.</p>
+        <p>Al enkele jaren zijn een aantal Facebookgroepen en -pagina’s en, op beperkte schaal, een Instagram-account actief. Zoveel als mogelijk wordt de informatie van deze media toegevoegd aan de website.</p>
+    </div>
+
+    <div class="meta">
+        <span>Deze pagina is bijgewerkt op 13-07-2026. FB.</span>
+        <span>Defensiebrandweer NL</span>
+    </div>
+</div>
+<div id="footer-placeholder"></div>
+</div><div class="custom-scrollbar-body"><div class="scrollbar-thumb"></div></div></div>
+</body>
+</html>

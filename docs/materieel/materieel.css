@@ -1,0 +1,15 @@
+/* Gedeelde styling voor materieel-subpagina's */
+.back-btn { min-height:44px; padding:10px 16px; border-radius:4px; border:1px solid var(--border); background:var(--surface); color:var(--gold); font:600 15px 'Barlow',sans-serif; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:background-color 150ms,color 150ms,border-color 150ms; margin-bottom:24px; }
+.back-btn:hover { background:var(--olive); border-color:var(--gold); color:#FFD078; }
+.content-section { margin:0 0 24px; padding:22px; background:var(--surface); border:1px solid var(--border); border-radius:6px; }
+.content-section h2 { margin:0 0 14px; padding:0 0 12px; color:var(--gold); border-bottom:1px solid var(--border); font:700 22px 'Barlow Condensed',sans-serif; letter-spacing:.04em; text-transform:uppercase; }
+.content-section p { color:var(--text-soft); font:400 16px/1.7 'Barlow',sans-serif; margin:0 0 12px; }
+.image-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin:16px 0; }
+.image-grid img { width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:4px; border:1px solid var(--border); cursor:zoom-in; transition:border-color 150ms; }
+.image-grid img:hover { border-color:var(--gold); }
+.back-link { display:inline-flex; align-items:center; gap:8px; color:var(--gold); font:600 15px 'Barlow',sans-serif; text-decoration:none; margin-top:12px; transition:color 150ms; }
+.back-link:hover { color:#FFD078; text-decoration:underline; text-underline-offset:3px; }
+.more-info { display:flex; align-items:center; gap:12px; padding:8px 0; background:transparent; border:none; color:var(--text-soft); font:400 15px/1.6 'Barlow',sans-serif; }
+.more-info i { color:var(--gold); font-size:18px; display:inline-flex; align-items:center; justify-content:center; line-height:1; }
+.more-info a { color:var(--gold); font-weight:600; text-decoration:none; border-bottom:1px solid transparent; transition:color 150ms, border-color 150ms; }
+.more-info a:hover { color:#FFD078; border-bottom-color:#FFD078; }

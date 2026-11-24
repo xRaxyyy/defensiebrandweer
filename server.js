@@ -47,6 +47,24 @@ const upload = multer({
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true }));
+// Clean URL's: /foo -> serveert foo.html (voor Express-poort 3000).
+app.use((req, res, next) => {
+    if (req.method !== 'GET') return next();
+    const docsDir = path.join(__dirname, 'docs');
+    if (req.path.endsWith('.html')) {
+        const clean = req.path.slice(0, -'.html'.length) || '/';
+        const qs = req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : '';
+        return res.redirect(301, clean + qs);
+    }
+    if (!req.path.includes('.')) {
+        const asFile = path.join(docsDir, decodeURIComponent(req.path) + '.html');
+        const resolved = path.resolve(asFile);
+        if (resolved.startsWith(docsDir) && fsSync.existsSync(resolved)) {
+            return res.sendFile(resolved);
+        }
+    }
+    next();
+});
 app.use(express.static(path.join(__dirname, 'docs')));
 app.use('/uploads', express.static(UPLOADS_DIR));
 

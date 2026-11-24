@@ -27,5 +27,21 @@
       "createdAt": "2026-02-10T07:52:38.866Z",
       "updatedAt": "2026-02-10T07:52:38.866Z"
     }
+  ],
+  "licenseplates": [
+    {
+      "kenteken": "13-221",
+      "naam": "test",
+      "merk": "Test",
+      "type": "Jawohll",
+      "status": "Actief",
+      "bouwjaar": "1999",
+      "locatie": "Test",
+      "roepnr": "13.123",
+      "imageUrl": "/uploads/image-1793193081383-866301025.png",
+      "id": "licenseplates_1793193081550_340w3vfei",
+      "createdAt": "2026-10-28T13:11:21.550Z",
+      "updatedAt": "2026-10-28T13:11:21.550Z"
+    }
   ]
 }

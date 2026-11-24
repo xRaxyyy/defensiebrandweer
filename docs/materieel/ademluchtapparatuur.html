@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600;700&display=block" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ademluchtapparatuur - DEFENSIEBRANDWEER NL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@400;700&display=block" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="materieel.css">
+    <script src="../js/navbar.js"></script>
+    <script src="../js/footer.js"></script>
+    <script src="../js/loader.js"></script>
+    <script src="../js/scrollbar.js"></script>
+    <script src="../js/modal.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.image-grid img').forEach(img => {
+                img.style.cursor = 'zoom-in';
+                img.addEventListener('click', () => {
+                    if (window.DefensieModal) window.DefensieModal.open(img.src, img.alt);
+                });
+            });
+        });
+    </script>
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
+    <meta property="og:image" content="https://defensiebrandweer.nl/assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+</head>
+<body class="materieel-page">
+<div id="navbar-placeholder"></div>
+<div class="scroll-container"><div class="scroll-content">
+<div class="page">
+    <div class="kicker">Materieel — Defensiebrandweer</div>
+    <h1>Ademluchtapparatuur</h1>
+    <p class="sub">Ademluchtapparatuur bij de Defensiebrandweer.</p>
+    <a class="back-btn" href="materieel?zoek=Ademluchtapparatuur"><i class="fas fa-arrow-left"></i> Terug naar materieel</a>
+    <div class="content-section">
+        <h2>Ademluchtapparatuur bij Defensie</h2>
+        <p>De brandweer heeft een gouden regel: Redden van mens en dier gaat voor het blussen. Maar daar komt nog een diamanten regel voor: Het leven van een brandweerman/-vrouw is ook belangrijk. Al vele jaren maakt de (Defensie)brandweer gebruik van ademluchtapparatuur. Op deze pagina een bloemlezing van de apparatuur die in gebruik is (geweest).</p>
+        <p>Alhoewel de echte Hydrazineploeg werd bemand door niet-brandweerlieden, de ademluchtapparatuur werd deels onderhouden door het lokale KLu Brandweerkorps.</p>
+    </div>
+    <div class="content-section">
+        <h2>Foto's</h2>
+        <div class="image-grid">
+            <img src="https://www.defensiebrandweer.nl/wp-content/uploads/2026/07/Vlb-Vkl-23-10-05_27.jpg" alt="Ademluchtapparatuur" onerror="this.style.display='none'">
+            <img src="https://www.defensiebrandweer.nl/wp-content/uploads/2026/07/IMG_4853.jpg" alt="Ademluchtapparatuur" onerror="this.style.display='none'">
+            <img src="https://www.defensiebrandweer.nl/wp-content/uploads/2026/07/IMG_4854.jpg" alt="Ademluchtapparatuur" onerror="this.style.display='none'">
+            <img src="https://www.defensiebrandweer.nl/wp-content/uploads/2026/07/IMG_4856.jpg" alt="Ademluchtapparatuur" onerror="this.style.display='none'">
+            <img src="https://www.defensiebrandweer.nl/wp-content/uploads/2026/07/IMG_4858.jpg" alt="Ademluchtapparatuur" onerror="this.style.display='none'">
+            <img src="https://www.defensiebrandweer.nl/wp-content/uploads/2026/07/chief-320x450.jpg" alt="Ademluchtapparatuur" onerror="this.style.display='none'">
+            <img src="https://www.defensiebrandweer.nl/wp-content/uploads/2026/07/IMG_4857.jpg" alt="Ademluchtapparatuur" onerror="this.style.display='none'">
+            <img src="https://www.defensiebrandweer.nl/wp-content/uploads/2026/07/0036-127-E-One-CT-2003-KLu.jpg" alt="Ademluchtapparatuur" onerror="this.style.display='none'">
+            <img src="https://www.defensiebrandweer.nl/wp-content/uploads/2026/07/0036-128-E-One-CT-2003-KLu.jpg" alt="Ademluchtapparatuur" onerror="this.style.display='none'">
+        </div>
+        <p>Bekijk de fotopagina's voor meer afbeeldingen van ademluchtapparatuur.</p>
+        <a class="back-link" href="fotogalerij"><i class="fi fi-rr-gallery"></i> Naar de fotogalerij</a>
+    </div>
+    <div class="content-section">
+        <h2>Meer informatie</h2>
+        <div class="more-info">
+            <i class="fi fi-rr-info"></i>
+            <span>Voor technische specificaties en details, bekijk het <a href="materieel?zoek=Ademluchtapparatuur">materieel-overzicht</a>.</span>
+        </div>
+    </div>
+</div>
+<div id="footer-placeholder"></div>
+</div><div class="custom-scrollbar-body"><div class="scrollbar-thumb"></div></div></div>
+</body>
+</html>
